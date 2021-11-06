@@ -8,7 +8,7 @@ import com.example.androidbp.data.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,6 +28,7 @@ class HomeViewModel @Inject constructor(private val repo: MainRepository) : View
                 addEntity(it)
                 _loadActivityState.value = LoadDataState.SUCCESS
                 _loadActivityState.value = LoadDataState.NONE
+
             }
         } catch (exception: Exception) {
             _loadActivityState.value = LoadDataState.ERROR
@@ -35,7 +36,8 @@ class HomeViewModel @Inject constructor(private val repo: MainRepository) : View
         }
     }
 
-    private fun addEntity(entity: DemoEntity) = viewModelScope.launch {
-        repo.addEntity(entity)
-    }
+    private suspend fun addEntity(entity: DemoEntity) =
+        withContext(viewModelScope.coroutineContext) {
+            repo.addEntity(entity)
+        }
 }
