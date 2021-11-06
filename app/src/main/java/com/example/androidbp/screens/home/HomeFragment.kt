@@ -101,13 +101,9 @@ class HomeFragment : BaseFragment() {
 
         ConstraintLayout(constrainSet) {
             Column {
-                LazyColumn(
-                    modifier = Modifier.layoutId("list")
-                ) {
+                LazyColumn(modifier = Modifier.layoutId("list")) {
                     activityList.value.asReversed().forEach {
-                        item {
-                            ActivityItem(it)
-                        }
+                        item { ActivityItem(it) }
                     }
                 }
             }
@@ -118,17 +114,11 @@ class HomeFragment : BaseFragment() {
                 } else {
                     Color.Gray
                 },
-                onClick = {
-                    if (isButtonEnable) viewModel.getRandomActivity()
-                }
+                onClick = { if (isButtonEnable) viewModel.getRandomActivity() }
             ) {
                 Icon(Icons.Filled.Add, "")
             }
-            if (isProgressDisplay) {
-                CircularProgressIndicator(
-                    modifier = Modifier.layoutId("progress")
-                )
-            }
+            if (isProgressDisplay) CircularProgressIndicator(modifier = Modifier.layoutId("progress"))
         }
     }
 

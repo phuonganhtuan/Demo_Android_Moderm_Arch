@@ -39,6 +39,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.0.1'
     }
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
 }
 
 dependencies {

@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(private val repo: MainRepository) : View
                 _loadActivityState.value = LoadDataState.SUCCESS
                 _loadActivityState.value = LoadDataState.NONE
             }
-        } catch (exeption: Exception) {
+        } catch (exception: Exception) {
             _loadActivityState.value = LoadDataState.ERROR
             _loadActivityState.value = LoadDataState.NONE
         }
