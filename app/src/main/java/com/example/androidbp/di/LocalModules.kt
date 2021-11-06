@@ -12,11 +12,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(ActivityComponent::class)
 abstract class LocalModules {
 
     @Binds
@@ -36,7 +37,7 @@ abstract class LocalModules {
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(ActivityComponent::class)
 object DBModules {
 
     @Provides

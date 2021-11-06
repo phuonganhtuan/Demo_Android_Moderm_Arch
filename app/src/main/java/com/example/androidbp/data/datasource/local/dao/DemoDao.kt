@@ -13,11 +13,11 @@ import kotlinx.coroutines.flow.StateFlow
 interface DemoDao {
 
     @Query("select * from DemoEntity")
-    fun getAllEntities(): Flow<List<DemoEntity>>
+    fun getAllEntities(): List<DemoEntity>
 
     @Insert(onConflict = REPLACE)
-    suspend fun addEntity(entity: DemoEntity)
+    fun addEntity(entity: DemoEntity)
 
     @Delete
-    suspend fun deleteEntity(entity: DemoEntity)
+    fun deleteEntity(entity: DemoEntity)
 }

@@ -2,14 +2,16 @@ package com.example.androidbp.data.repository
 
 import com.example.androidbp.data.models.DemoEntity
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Call
+import retrofit2.Callback
 
 interface MainRepository {
 
-    fun getAllEntities(): Flow<List<DemoEntity>>
+    fun getAllEntities(): List<DemoEntity>
 
-    suspend fun addEntity(entity: DemoEntity)
+     fun addEntity(entity: DemoEntity)
 
-    suspend fun deleteEntity(entity: DemoEntity)
+     fun deleteEntity(entity: DemoEntity)
 
-    suspend fun getRandomActivity(): DemoEntity
+     fun getRandomActivity(): Call<DemoEntity>
 }

@@ -13,9 +13,9 @@ class MainRepositoryImpl @Inject constructor(
 
     override fun getAllEntities() = localDataSource.getAllEntities()
 
-    override suspend fun addEntity(entity: DemoEntity) = localDataSource.addEntity(entity)
+    override fun addEntity(entity: DemoEntity) = localDataSource.addEntity(entity)
 
-    override suspend fun deleteEntity(entity: DemoEntity) = localDataSource.deleteEntity(entity)
+    override fun deleteEntity(entity: DemoEntity) = localDataSource.deleteEntity(entity)
 
-    override suspend fun getRandomActivity() = remoteDataSource.getRandomActivity()
+    override fun getRandomActivity() = remoteDataSource.getRandomActivity()
 }

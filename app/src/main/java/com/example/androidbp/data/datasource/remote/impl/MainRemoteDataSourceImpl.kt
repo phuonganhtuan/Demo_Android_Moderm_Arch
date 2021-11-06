@@ -7,5 +7,5 @@ import javax.inject.Inject
 class MainRemoteDataSourceImpl @Inject constructor(private val api: ApiService) :
     MainRemoteDataSource {
 
-    override suspend fun getRandomActivity() = api.getRandomActivity()
+    override fun getRandomActivity() = api.getRandomActivity()
 }

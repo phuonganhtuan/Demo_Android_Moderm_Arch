@@ -9,7 +9,7 @@ class MainLocalDataSourceImpl @Inject constructor(private val dao: DemoDao) : Ma
 
     override fun getAllEntities() = dao.getAllEntities()
 
-    override suspend fun addEntity(entity: DemoEntity) = dao.addEntity(entity)
+    override fun addEntity(entity: DemoEntity) = dao.addEntity(entity)
 
-    override suspend fun deleteEntity(entity: DemoEntity) = dao.deleteEntity(entity)
+    override fun deleteEntity(entity: DemoEntity) = dao.deleteEntity(entity)
 }

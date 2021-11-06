@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainLocalDataSource {
 
-    fun getAllEntities(): Flow<List<DemoEntity>>
+    fun getAllEntities(): List<DemoEntity>
 
-    suspend fun addEntity(entity: DemoEntity)
+     fun addEntity(entity: DemoEntity)
 
-    suspend fun deleteEntity(entity: DemoEntity)
+     fun deleteEntity(entity: DemoEntity)
 }
