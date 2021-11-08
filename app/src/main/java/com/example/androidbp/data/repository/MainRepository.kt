@@ -12,4 +12,6 @@ interface MainRepository {
     suspend fun deleteEntity(entity: DemoEntity)
 
     suspend fun getRandomActivity(): DemoEntity
+
+    suspend fun getRandomActivityDelayed(): DemoEntity
 }
