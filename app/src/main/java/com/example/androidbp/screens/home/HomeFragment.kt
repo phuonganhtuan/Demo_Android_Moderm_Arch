@@ -25,7 +25,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.androidbp.base.BaseFragment
-import com.example.androidbp.base.LoadDataState
 import com.example.androidbp.data.models.DemoEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -54,12 +53,12 @@ class HomeFragment : BaseFragment() {
     private fun observeData() = with(viewModel) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                loadActivityState.collect {
-                    if (it == LoadDataState.SUCCESS) {
+                state.collect {
+                    if (it == MainState.ActivitySuccess) {
                         showToastMessage("Get new activity successfully")
                     }
 
-                    if (it == LoadDataState.ERROR) {
+                    if (it == MainState.Error) {
                         showToastMessage("Cannot get new activity")
                     }
                 }
@@ -90,14 +89,18 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun fetchNewActivity() = lifecycleScope.launch {
+        viewModel.activityIntent.send(MainIntent.FetchNewActivity)
+    }
+
     @Composable
     private fun HomeScreenUIs() {
 
-        val activityUiState = viewModel.loadActivityState.collectAsState()
+        val activityUiState = viewModel.state.collectAsState()
         val activityList = viewModel.localActivityList.collectAsState()
 
-        val isButtonEnable = activityUiState.value != LoadDataState.LOADING
-        val isProgressDisplay = activityUiState.value == LoadDataState.LOADING
+        val isButtonEnable = activityUiState.value != MainState.Loading
+        val isProgressDisplay = !isButtonEnable
 
         ConstraintLayout(constrainSet) {
             Column {
@@ -114,7 +117,7 @@ class HomeFragment : BaseFragment() {
                 } else {
                     Color.Gray
                 },
-                onClick = { if (isButtonEnable) viewModel.getRandomActivity() }
+                onClick = { if (isButtonEnable) fetchNewActivity() }
             ) {
                 Icon(Icons.Filled.Add, "")
             }
